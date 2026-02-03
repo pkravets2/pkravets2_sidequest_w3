@@ -62,18 +62,18 @@ function drawGame() {
 }
 
 function gameMousePressed() {
-  // hit test
   const hit = dist(mouseX, mouseY, game.targetX, game.targetY) <= game.targetR;
 
   if (hit) {
     game.score += 1;
 
+    // ✅ WIN IMMEDIATELY when you reach the goal
     if (game.score >= game.goal) {
       currentScreen = "win";
       return;
     }
 
-    // reposition target so it doesn’t feel “farmable”
+    // reposition target
     game.targetX = random(game.targetR, width - game.targetR);
     game.targetY = random(game.targetR, height - game.targetR);
 
@@ -82,6 +82,11 @@ function gameMousePressed() {
     game.vy *= 1.03;
   } else {
     game.lives -= 1;
+
+    // (optional) lose immediately if you hit 0 lives
+    if (game.lives <= 0) {
+      currentScreen = "lose";
+    }
   }
 }
 
