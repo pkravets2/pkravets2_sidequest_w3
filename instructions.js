@@ -1,6 +1,3 @@
-// instructions.js
-// Instructions screen: ESC or B to go back
-
 function drawInstr() {
   background(240);
 
@@ -10,22 +7,42 @@ function drawInstr() {
   text("Instructions", width / 2, 80);
 
   textSize(18);
-  text(
-    "Click the moving circle to score points.\n" +
-      "Miss = lose 1 life.\n" +
-      "Reach the goal before the timer hits 0.\n\n" +
-      "Press ESC or B to go back.",
-    width / 2,
-    170,
-  );
+  const lines =
+    "Press the game button.\n" + "You have a chance to win or lose!";
+  text(lines, width / 2, 160);
+
+  const backBtn = {
+    x: width / 2,
+    y: 560,
+    w: 220,
+    h: 70,
+    label: "BACK",
+  };
+
+  drawInstrButton(backBtn);
+  cursor(isHover(backBtn) ? HAND : ARROW);
 }
 
 function instrMousePressed() {
-  // no mouse needed
+  const backBtn = { x: width / 2, y: 560, w: 220, h: 70 };
+  if (isHover(backBtn)) currentScreen = "start";
 }
 
 function instrKeyPressed() {
-  if (keyCode === ESCAPE || key === "b" || key === "B") {
-    currentScreen = "start";
-  }
+  if (keyCode === ESCAPE) currentScreen = "start";
+  if (key === "b" || key === "B") currentScreen = "start";
+}
+
+function drawInstrButton({ x, y, w, h, label }) {
+  rectMode(CENTER);
+  const hover = isHover({ x, y, w, h });
+
+  noStroke();
+  fill(hover ? color(200, 200, 255, 200) : color(220, 220, 255, 170));
+  rect(x, y, w, h, 12);
+
+  fill(0);
+  textSize(26);
+  textAlign(CENTER, CENTER);
+  text(label, x, y);
 }
