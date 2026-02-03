@@ -60,13 +60,16 @@ function startMousePressed() {
   const startBtn = { x: width / 2, y: 320, w: 240, h: 80 };
   const instrBtn = { x: width / 2, y: 430, w: 240, h: 80 };
 
-  // If START is clicked, go to the game screen
+  // inside startMousePressed():
   if (isHover(startBtn)) {
+    resetGame();
     currentScreen = "game";
   }
-  // If INSTRUCTIONS is clicked, go to the instructions screen
-  else if (isHover(instrBtn)) {
-    currentScreen = "instr";
+
+  // inside startKeyPressed():
+  if (keyCode === ENTER) {
+    resetGame();
+    currentScreen = "game";
   }
 }
 

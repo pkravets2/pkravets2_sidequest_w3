@@ -27,12 +27,56 @@ let currentScreen = "start"; // "start" | "instr" | "game" | "win" | "lose"
 // setup() runs ONCE at the beginning
 // ------------------------------
 // This is where you usually set canvas size and initial settings.
+// Shared game data (available in every file)
+let game = null;
+
+// Reset EVERYTHING (back to level 1)
+function resetGame() {
+  game = {
+    level: 1,
+    score: 0,
+    lives: 3,
+    timeLeft: 30, // seconds
+
+    // target
+    targetX: 400,
+    targetY: 400,
+    targetR: 40,
+    vx: 4,
+    vy: 3,
+
+    // goal increases each level
+    goal: 6,
+  };
+
+  resetRound(); // set target position + goal for level 1
+}
+
+// Reset the round (keep the current level)
+function resetRound() {
+  game.score = 0;
+  game.lives = 3;
+  game.timeLeft = 30;
+
+  game.goal = 6 + (game.level - 1) * 2;
+
+  // harder each level
+  const spd = 3 + game.level * 0.8;
+  game.vx = random([-1, 1]) * spd;
+  game.vy = random([-1, 1]) * (spd * 0.8);
+
+  game.targetR = max(18, 42 - game.level * 2); // target gets smaller
+  game.targetX = random(game.targetR, width - game.targetR);
+  game.targetY = random(game.targetR, height - game.targetR);
+}
+
 function setup() {
   createCanvas(800, 800);
 
   // Sets a default font for all text() calls
   // (This can be changed later per-screen if you want.)
   textFont("sans-serif");
+  resetGame();
 }
 
 // ------------------------------
