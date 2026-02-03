@@ -68,6 +68,11 @@ function gameMousePressed() {
   if (hit) {
     game.score += 1;
 
+    if (game.score >= game.goal) {
+      currentScreen = "win";
+      return;
+    }
+
     // reposition target so it doesn’t feel “farmable”
     game.targetX = random(game.targetR, width - game.targetR);
     game.targetY = random(game.targetR, height - game.targetR);
