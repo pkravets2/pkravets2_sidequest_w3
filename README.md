@@ -1,18 +1,18 @@
 ## Project Title
 
-GBDA302 Week 3 Example 1: Instructions Screen with Back button
+GBDA302 Week 3: Win Lose Ball Game
 
 ---
 
 ## Authors
 
-Karen Cochrane and David Han
+Peter Kravets
 
 ---
 
 ## Description
 
-This p5.js project demonstrates a simple multi-screen game structure using a state-based approach. The example includes a start screen, an instructions screen with a back button, a basic game screen, and win/lose outcome screens. The focus is on showing how to separate screens into different files, route input based on the current game state, and design simple UI elements such as buttons and keyboard controls.
+The game created using p5.js framework is single/multi screen game which begins with a play and Instructions menu. Each option leads you to a new screen. It is a ball based game where you win or lose based on your gameplay. Levels increase in difficulty as you progress. Players may press to restart current level or press escape to quit and return to main menu at any time.
 
 ---
 
@@ -34,6 +34,6 @@ N/A
 
 ## GenAI
 
-The code was written by Dr. Karen Cochrane but she used GenAI to write the comments.
+GenAI was used to cleanup code, make new code and visuals to create the final product
 
 ---
