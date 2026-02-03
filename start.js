@@ -1,26 +1,24 @@
 // start.js
-// Start screen: ENTER = start game, I = instructions
-
 let startBtn;
 
 function drawStart() {
-  background(30);
+  background(180, 220, 220);
 
-  fill(255);
+  fill(40);
   textAlign(CENTER, CENTER);
-  textSize(46);
-  text("Win or Lose", width / 2, 220);
+  textSize(64);
+  text("Win or Lose", width / 2, 200);
 
-  textSize(18);
-  text("Press ENTER to start\nPress I for instructions", width / 2, 300);
+  textSize(20);
+  text("Press ENTER to start\nPress I for instructions", width / 2, 270);
 
-  // One button only (Start)
-  startBtn = { x: width / 2, y: 430, w: 240, h: 80 };
+  startBtn = { x: width / 2, y: 520, w: 420, h: 120 };
   drawButton(startBtn, "START");
+
+  cursor(isHover(startBtn) ? HAND : ARROW);
 }
 
 function startMousePressed() {
-  // Optional: keep clicking START if your mouse works sometimes
   if (isHover(startBtn)) {
     resetGame();
     currentScreen = "game";
@@ -33,7 +31,6 @@ function startKeyPressed() {
     currentScreen = "game";
   }
 
-  // ✅ I opens instructions
   if (key === "i" || key === "I") {
     currentScreen = "instr";
   }
